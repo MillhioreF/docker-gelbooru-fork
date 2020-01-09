@@ -43,12 +43,37 @@ After that you'll need to go to the following link and sign up with your ADMINIS
 The IP address for your server is displayed at the very top of the terminal window, if it doesn't match the one here edit the URL so it does.
 
 Wait for the message, and go to Gelbooru main page to test things: http://192.168.99.100:44555
-You should now be able to whatever you want inside gelbooru, in my tests the first image that you upload will have a broken thumbnail, but for the rest of the images it'll work fine.
+You should now be able to put whatever you want inside gelbooru, in my tests the first image that you upload will have a broken thumbnail, but for the rest of the images it'll work fine.
 
 The administrator(s) page is located at: http://192.168.99.100:44555/admin/index.php
 
 *in case you decide to change the credentials, you'll need to also change the gelbooru config file to match, the file is located at /var/www/html/config.php
 
+## Changing settings file
+
+Edit `\docker-gelbooru-fork\gelbooru-fork\config.php`, then move config.php to the main Docker Toolbox folder and run:
+```
+docker cp config.php gelbooru:/var/www/html/config.php
+```
+
+## Turning off and on the booru
+
+Even when the terminal is closed the booru is still running, until you enter:
+```
+docker-machine stop
+``` 
+Booru is now off. To turn it back on:
+```
+docker-machine start
+```
+```
+docker ps -a
+```
+Find the container with the image `gelbooru-img` and enter its ID into the next command, e.g.
+```
+docker start 6c29f96abe8f
+```
+And you're good to go. The local IP address may change supposedly but I haven't had this issue.
 
 ## Paths inside the container you might want to know:
 
