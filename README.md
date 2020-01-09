@@ -4,11 +4,15 @@ The easiest way to deploy a container with Gelbooru-fork! Now you can privately 
 
 ## Fastest way to deploy
 
+Install and run docker-toolbox with the instructions on this page, it might take a few minutes: https://docs.docker.com/toolbox/toolbox_install_windows/
+
+Then run the following commands (if you get a permissions error, use something like `cd C:/betterfolder` to navigate out of the default folder):
+
 ```
-git clone https://github.com/evertonstz/docker-gelbooru-fork.git
+git clone https://github.com/evertonstz/docker-gelbooru-fork.git --recurse-submodules
 ```
 ```
-docker build -t gelbooru-img docker-gelbooru-fork```
+docker build -t gelbooru-img docker-gelbooru-fork
 ```
 ```
 docker run -p 44555:80 --name=gelbooru -dP gelbooru-img
@@ -35,12 +39,13 @@ mysql -u gelbooru -p"gelbooru" -e "create database gelbooru1"
 ```
 Use "exit" to close the container's bash shell.
 
-After that you'll need to go to the following link and signu with your ADMINISTRATOR info in your web browser: http://localhost:44555/install/index.php
+After that you'll need to go to the following link and sign up with your ADMINISTRATOR info in your web browser: http://192.168.99.100:44555/install/index.php
+The IP address for your server is displayed at the very top of the terminal window, if it doesn't match the one here edit the URL so it does.
 
-Wait for the message, and go to Gelbooru main page to test things: http://localhost:44555
+Wait for the message, and go to Gelbooru main page to test things: http://192.168.99.100:44555
 You should now be able to whatever you want inside gelbooru, in my tests the first image that you upload will have a broken thumbnail, but for the rest of the images it'll work fine.
 
-The administrator(s) page is located at: http://localhost:44555/admin/index.php
+The administrator(s) page is located at: http://192.168.99.100:44555/admin/index.php
 
 *in case you decide to change the credentials, you'll need to also change the gelbooru config file to match, the file is located at /var/www/html/config.php
 
